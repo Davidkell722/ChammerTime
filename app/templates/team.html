@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ team['name'] }} - Team Page</title>
+</head>
+<body>
+    <h1>{{ team['name'] }}</h1>
+    <p>Rank: {{ team['rank'] }}</p>
+    <section>
+        <h2>Historical Records</h2>
+        <ul>
+            {% for season, record in history.items() %}
+                <li>{{ season }} - Wins: {{ record['wins'] }}, Losses: {{ record['losses'] }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+</body>
+</html>
