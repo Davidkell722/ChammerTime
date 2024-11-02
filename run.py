@@ -1,3 +1,4 @@
+print("Starting Flask app...")  # Add this line
 from app import create_app
 
 app = create_app()
