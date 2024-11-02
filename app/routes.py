@@ -1,14 +1,35 @@
 from flask import Blueprint, render_template
 import json
+import os
 
 main = Blueprint('main', __name__)
 
-# Load your league data from JSON files
-with open('data/league_data.json') as f:
-    league_data = json.load(f)
+# Set default data in case JSON files are missing
+default_league_data = {
+    "teams": [
+        {"id": 1, "name": "Team Alpha", "rank": 1, "wins": 10, "losses": 2},
+        {"id": 2, "name": "Team Beta", "rank": 2, "wins": 8, "losses": 4}
+    ]
+}
 
-with open('data/team_history.json') as f:
-    team_history = json.load(f)
+default_team_history = {
+    "1": {"2022": {"wins": 10, "losses": 2}},
+    "2": {"2022": {"wins": 8, "losses": 4}}
+}
+
+# Load league data from file if available, otherwise use default data
+if os.path.exists('data/league_data.json'):
+    with open('data/league_data.json') as f:
+        league_data = json.load(f)
+else:
+    league_data = default_league_data
+
+# Load team history from file if available, otherwise use default data
+if os.path.exists('data/team_history.json'):
+    with open('data/team_history.json') as f:
+        team_history = json.load(f)
+else:
+    team_history = default_team_history
 
 @main.route('/')
 def home():
