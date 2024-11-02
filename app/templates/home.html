@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fantasy Football League - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Fantasy Football League</h1>
+    <section>
+        <h2>Power Rankings</h2>
+        <ul>
+            {% for team in power_rankings %}
+                <li>{{ team['name'] }} - Rank: {{ team['rank'] }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h2>Current Season Standings</h2>
+        <ul>
+            {% for team in standings %}
+                <li>{{ team['name'] }} - Wins: {{ team['wins'] }} - Losses: {{ team['losses'] }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+</body>
+</html>
